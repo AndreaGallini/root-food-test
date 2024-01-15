@@ -7,7 +7,7 @@
     </p>
   </div>
     <div class="section" data-color="blue">
-      <div class="lateral_nav">
+      <div class="lateral_nav" id="lateral_1">
       <p>01</p>
       <p>WHY</p>
       </div>
@@ -21,6 +21,50 @@
           <p>001</p>
           <p>one</p>
         </section>
+        <div class="title_section">
+          <p class="title">WHY</p>
+        </div>
+        <div class="content_section">
+        <div class="upper">
+        <p>explore infite potential</p>
+        </div>
+        <div class="down">
+        <p>Rootfood is a personalized Nutritional Advisor and Private Chef Service. <br>
+         aimed at helping you explore the infinite possibilities of a delicious,<br> well balanced, carefully evaluated diet.</p>
+        </div>
+        </div>
+      </div>
+        
+
+      </div>
+    </div>
+    <div class="section" data-color="green">
+      <div class="lateral_nav_2" id="lateral_2">
+      <p>01</p>
+      <p>WHY</p>
+      </div>
+      <div class="body_section">
+      <div  class="hero_img ">
+        <img src="./assets/image/riso_why.png" alt="">
+      </div>
+      <div class="content">
+        <section class="chapter">
+          <p>chapter</p>
+          <p>001</p>
+          <p>one</p>
+        </section>
+        <div class="title_section">
+          <p class="title">WHY</p>
+        </div>
+        <div class="content_section">
+        <div class="upper">
+        <p>explore infite potential</p>
+        </div>
+        <div class="down">
+        <p>Rootfood is a personalized Nutritional Advisor and Private Chef Service. <br>
+         aimed at helping you explore the infinite possibilities of a delicious,<br> well balanced, carefully evaluated diet.</p>
+        </div>
+        </div>
       </div>
         
 
@@ -30,6 +74,21 @@
   <div id="cursor-follower" class="cursor-follower"></div>
 </template>
 <style>
+.content_section{
+  padding-top: 200px;
+  padding-left: 400px;
+  width: 300px;
+  .upper{
+    padding-bottom: 100px;
+  }
+  
+}
+.content_section .down{
+  width: 300px;
+}
+.title_section .title{
+  font-size: 200px;
+}
 .chapter{
   display: flex;
   width: 70%;
@@ -38,7 +97,7 @@
 .content{
   width: 900px;
   padding-left: 100px;
-  padding-top: 150px;
+  padding-top: 105px;
 }
 .hero_img{
   position: relative;
@@ -55,6 +114,7 @@
 }
 .section{
   display: flex;
+  flex: 0 0 auto;
 }
 .lateral_nav{
   border: 1px solid black
@@ -65,6 +125,7 @@
     height: 100vh;
     background-size: cover;
     flex: 0 0 auto;
+   
   }
    .section_home p{
     color: white;
@@ -76,7 +137,7 @@
     white-space: nowrap;
   }
   .body_section{
-    width: 1900px;
+    width: 3000px;
     flex: 0 0 auto;
     display: flex;
   }
@@ -92,11 +153,22 @@
   transition: background-color 0.3s ease, transform 0.1s; 
   z-index: 9999;
 }
+.fixed_lateral{
+  position: fixed;
+}
 
 </style>
 <script>
  export default {
+  data() {
+    return {
+      counter: 0,
+    };
+  },
   mounted() {
+
+ 
+  
     // Seleziona il contenitore che deve scorrere orizzontalmente
     const scrollContainer = this.$refs.scrollContainer;
 
@@ -119,7 +191,9 @@
 
     // Aggiungi l'ascoltatore di eventi per il movimento del mouse
     document.addEventListener('mousemove', moveFollower);
-
+    
+    
+    this.StartInfiniteLoop();
     // Cambia il colore del pallino quando entri in una specifica sezione
     document.querySelectorAll('.section').forEach(section => {
       section.addEventListener('mouseenter', () => {
@@ -128,6 +202,50 @@
         cursorFollower.style.backgroundColor = activeColor;
       });
     });
+  },
+  methods:{
+    getPosition(){
+      const lateral_1 = document.getElementById('lateral_1')
+    const lateral_2 = document.getElementById('lateral_2')
+    const rect = lateral_2.getBoundingClientRect();
+
+console.log('Element position: ', rect);
+console.log('Top: ', rect.top);
+console.log('Right: ', rect.right);
+console.log('Bottom: ', rect.bottom);
+console.log('Left: ', rect.left);
+if(rect.left == 80){
+      lateral_1.classList.add('fixed_lateral')
+    }
+if(rect.left != 80){
+  lateral_1.classList.remove('fixed_lateral')
+}
+    },
+    StartInfiniteLoop() {
+      const loop = () => {
+        this.counter++;
+        const lateral_1 = document.getElementById('lateral_1')
+    const lateral_2 = document.getElementById('lateral_2')
+    const rect = lateral_2.getBoundingClientRect();
+
+console.log('Element position: ', rect);
+console.log('Top: ', rect.top);
+console.log('Right: ', rect.right);
+console.log('Bottom: ', rect.bottom);
+console.log('Left: ', rect.left);
+if(rect.left == 80){
+      lateral_1.classList.add('fixed_lateral')
+    }
+    if(rect.left != 80){
+  lateral_1.classList.remove('fixed_lateral')
+}
+
+        setTimeout(loop, 1); // Repeat the loop every 1 second (adjust as needed).
+      };
+
+      loop();
+    },
+    
   }
 };
 
