@@ -6,7 +6,7 @@
     <p>food
     </p>
   </div>
-    <div class="section">
+    <div class="section" data-color="blue">
       <div class="lateral_nav">
       <p>01</p>
       <p>WHY</p>
@@ -27,6 +27,7 @@
       </div>
     </div>
   </div>
+  <div id="cursor-follower" class="cursor-follower"></div>
 </template>
 <style>
 .chapter{
@@ -79,6 +80,18 @@
     flex: 0 0 auto;
     display: flex;
   }
+  .cursor-follower {
+  position: fixed;
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: red; /* Colore iniziale */
+  transform: translate(-50%, -50%);
+  transition: background-color 0.2s, transform 0.1s;
+  z-index: 9999;
+}
+
 </style>
 <script>
  export default {
@@ -94,6 +107,26 @@
       // Modifica lo scrollLeft in base al delta dello scroll verticale
       scrollContainer.scrollLeft += e.deltaY;
     }, { passive: false }); // `passive: false` è necessario per poter chiamare `preventDefault()`
+    const cursorFollower = document.getElementById('cursor-follower');
+    let activeColor = 'red'; // Colore di default
+
+    // Funzione per muovere il pallino
+    const moveFollower = (e) => {
+      cursorFollower.style.left = `${e.clientX}px`;
+      cursorFollower.style.top = `${e.clientY}px`;
+    };
+
+    // Aggiungi l'ascoltatore di eventi per il movimento del mouse
+    document.addEventListener('mousemove', moveFollower);
+
+    // Cambia il colore del pallino quando entri in una specifica sezione
+    document.querySelectorAll('.section').forEach(section => {
+      section.addEventListener('mouseenter', () => {
+        console.log('Nuovo colore:', activeColor);
+        activeColor = section.getAttribute('data-color');
+        cursorFollower.style.backgroundColor = activeColor;
+      });
+    });
   }
 };
 
