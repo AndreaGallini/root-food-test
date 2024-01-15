@@ -86,9 +86,10 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: red; /* Colore iniziale */
+  background-color: red;
+  opacity: 0.75; /* Colore iniziale */
   transform: translate(-50%, -50%);
-  transition: background-color 0.2s, transform 0.1s;
+  transition: background-color 0.3s ease, transform 0.1s; 
   z-index: 9999;
 }
 
