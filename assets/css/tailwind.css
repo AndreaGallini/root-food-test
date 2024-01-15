@@ -7,6 +7,6 @@
         @apply  h-screen
     }
     .lateral_nav{
-        @apply bg-white w-[80px] h-screen sticky 
+        @apply bg-white w-[80px] h-screen sticky top-0 left-0 z-10
     }
 }
