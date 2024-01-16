@@ -1,15 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+  
+
 @layer{
     .main_container{
-        @apply  h-screen
+        @apply  h-screen bg-[#F9F6E6]
     }
-    .lateral_nav{
+    .band__primary{
         @apply bg-white w-[80px] h-screen sticky top-0 left-0 z-20
     }
     .lateral_nav_2{
         @apply bg-white w-[80px] h-screen sticky top-0 left-[80px] z-10
+    }
+    .rose_gold{
+        @apply text-[#d6956d]
+    }
+    .cian{
+        @apply text-[#7b9daf]
+    }
+    .rose_red{
+        @apply text-[#d66b58]
+    }
+    .dark_green{
+        @apply text-[#647c67]
     }
 }
