@@ -5,7 +5,7 @@
     <a href="#who" style="color:wheat" class="scroll-smooth" >Who</a>
     <a href="#what" style="color:wheat" class="scroll-smooth">What</a>
     <a href="#how" style="color:wheat" class="scroll-smooth">How</a>
-    <a href="#conect" style="color:wheat" class="scroll-smooth">Connect</a>
+    <a href="#connect" style="color:wheat" class="scroll-smooth">Connect</a>
     
     
     
@@ -62,12 +62,15 @@
   </div>
   </div>
   <div class="contents">
-  <div class=" section section__why" data-color="#d6956d" id="why">
-  <div class="hero_why">
-    <img src="./assets/image/riso_why.png" alt="">
+  <div class=" section section__why" data-color="#d6956d" id="why" >
+  <div class="hero_why" >
+    <img src="./assets/image/riso_why.png" alt="" >
+    
   </div>
-  <div class="inner_content inner_why">
+  <div class="inner_content inner_why" >
+  
   <div class="inner_content_chapter rose_gold">
+    
     <p>Chapter</p>
   <p>001</p>
   <p>why</p>
@@ -76,6 +79,7 @@
     <p>why</p>
   </div>
   <div class="inner_content_text rose_gold">
+  
     <div class="inner_up">
       <p> EXPLORE INFINITE POTENTIAL</p>
     </div>
@@ -233,7 +237,7 @@ To achieve such a result, we offer the possibility to combine <br> traditional t
 
 
   </div>
-  <div class="section section_who" data-color="#647c67" id="who">
+  <div class="section section_who" data-color="#647c67" id="how">
   <div class="inner_who_1 dark_green">
     <p>OUR RELATIONASHIP</p>
     <p class="citation_who">We would like to co-create a holistic gastronomical experience that involves all <br>your senses and makes you feel inspired to redesign your life, so our relationship <br> starts with an informal interview, aimed at establishing your current tastes and <br>food preferences, health status, general goals and future objectives.</p>
@@ -357,6 +361,8 @@ Even though we do not classify as a strictly plant based service,<br> unless exp
 }
 .col_center p{
   padding-bottom: 3rem;
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 30px;
 }
 .mouse {
 	width: 50px;
@@ -1092,7 +1098,8 @@ import 'swiper/css/mousewheel';
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
           document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+            behavior: 'smooth',
+            inline: 'start'
           });
         });
       });
