@@ -1,13 +1,18 @@
 <template>
-  <div class="main_container" ref="scrollContainer">
-  <div class="section section_home">
-  <nav>
+  <div class="main_container " ref="scrollContainer">
+    <nav>
+    <a href="#why" style="color:wheat" class="scroll-smooth">Why</a>
+    <a href="#who" style="color:wheat" class="scroll-smooth" >Who</a>
+    <a href="#what" style="color:wheat" class="scroll-smooth">What</a>
+    <a href="#how" style="color:wheat" class="scroll-smooth">How</a>
+    <a href="#conect" style="color:wheat" class="scroll-smooth">Connect</a>
     
-    <a href="#who" style="color:wheat" >Who</a>
     
     
-    <p>Connect</p>
+   
   </nav>
+  <div class="section section_home">
+
   <div class="content_home">
   <div class="root_scritta">
 <p>Root</p>
@@ -16,6 +21,10 @@
     <p>
       Giulio Urbani presents Rootfood,<br> a personalized nutritional advisor and private chef service
     </p>
+  </div>
+  <div class="col_center">
+    <p>Start Your Jurney</p>
+    <div class="mouse"></div>
   </div>
   <div class="col_down">
     <p> © 2024</p>
@@ -53,7 +62,7 @@
   </div>
   </div>
   <div class="contents">
-  <div class=" section section__why" data-color="#d6956d">
+  <div class=" section section__why" data-color="#d6956d" id="why">
   <div class="hero_why">
     <img src="./assets/image/riso_why.png" alt="">
   </div>
@@ -137,7 +146,7 @@ Rootfood comes as a result of such a process of growth and self-realization”.<
     <img src="./assets/image/hero_3_who.png" alt="">
   </div>
   </div>
-  <div class=" section section__what" data-color="#d66b58">
+  <div class=" section section__what" data-color="#d66b58" id="what">
   <div class="hero_what">
     <img src="./assets/image/piatto_gamberetti.png" alt="">
   </div>
@@ -224,7 +233,7 @@ To achieve such a result, we offer the possibility to combine <br> traditional t
 
 
   </div>
-  <div class="section section_who" data-color="#647c67" >
+  <div class="section section_who" data-color="#647c67" id="who">
   <div class="inner_who_1 dark_green">
     <p>OUR RELATIONASHIP</p>
     <p class="citation_who">We would like to co-create a holistic gastronomical experience that involves all <br>your senses and makes you feel inspired to redesign your life, so our relationship <br> starts with an informal interview, aimed at establishing your current tastes and <br>food preferences, health status, general goals and future objectives.</p>
@@ -279,7 +288,7 @@ Even though we do not classify as a strictly plant based service,<br> unless exp
     </div>
   </div>
   </div>
-  <div class=" section_connect">
+  <div class=" section_connect" id="connect">
     <div class="connect_title">
       <p class="connect_main_title">connect</p>
       <div class="inner_title_connect">
@@ -340,6 +349,51 @@ Even though we do not classify as a strictly plant based service,<br> unless exp
   <div id="cursor-follower" class="cursor-follower"></div>
 </template>
 <style>
+@import url("./assets/css/main.css");
+.col_center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.col_center p{
+  padding-bottom: 3rem;
+}
+.mouse {
+	width: 50px;
+	height: 80px;
+	border: 3px solid #fff;
+	border-radius: 60px;
+	position: relative;
+	&::before {
+		content: '';
+		width: 12px;
+		height: 12px;
+		position: absolute;
+		top: 10px;
+		left: 50%;
+		transform: translateX(-50%);
+		background-color: #fff;
+		border-radius: 50%;
+		opacity: 1;
+		animation: wheel 2s infinite;
+		-webkit-animation: wheel 2s infinite;
+	}
+}
+
+@keyframes wheel {
+	to {
+		opacity: 0;
+		top: 60px;
+	}
+}
+
+@-webkit-keyframes wheel {
+	to {
+		opacity: 0;
+		top: 60px;
+	}
+}
+
 .divisore-contatti{
   padding-top: 3px;
   margin-left: 5px;
@@ -782,6 +836,7 @@ Even though we do not classify as a strictly plant based service,<br> unless exp
   width: 100%;
   z-index: 10;
   position: relative;
+  padding-top: 50px;
 }
 
 nav{
@@ -790,6 +845,9 @@ nav{
   width: 100%;
   padding: 15px 50px;
   text-transform: uppercase;
+  position: fixed;
+  top: 0;
+  z-index: 99;
 }
 .inner_up{
   padding-bottom: 3rem;
@@ -992,7 +1050,7 @@ import 'swiper/css/mousewheel';
     };
   },
   mounted() {
-
+    this.setupSmoothScroll();
     console.log(this.images);
     // Seleziona il contenitore che deve scorrere orizzontalmente
     const scrollContainer = this.$refs.scrollContainer;
@@ -1029,15 +1087,16 @@ import 'swiper/css/mousewheel';
     });
   },
   methods:{
-    scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      window.scrollTo({
-        top: section.offsetTop,
-        behavior: 'smooth'
+    setupSmoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
       });
     }
-  }
    // getPosition(){
    //   const lateral_1 = document.getElementById('lateral_1')
    // const lateral_2 = document.getElementById('lateral_2')
