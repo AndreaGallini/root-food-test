@@ -846,6 +846,7 @@ Even though we do not classify as a strictly plant based service,<br> unless exp
 }
 
 nav{
+background-color: rgba(26,18,11,.6);
   display: flex;
   justify-content: space-between;
   width: 100%;
